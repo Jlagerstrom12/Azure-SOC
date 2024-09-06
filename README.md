@@ -31,7 +31,9 @@ In this project, I build a mini honeynet in Azure and ingest log sources from va
 - [NIST SP 800-61 Revision 2](https://www.nist.gov/privacy-framework/nist-sp-800-61) for Incident Handling Guidance
 
 ## Methodology
-- **Creating the Honeynet:** First I deployed A Linux Virtual Machine and a Windows 10 Virtual Machine in Azure, and then I configured them so they would be insecure.   
+- **Creating the Honeynet:** First I [deployed A Linux Virtual Machine and a Windows 10 Virtual Machine in Azure](https://github.com/Jlagerstrom12/Creating-Honeypot-In-Azure/blob/main/README.md), and then I configured them so they would be insecure.
+- **Monitoring and Analysis** Second I configured Azure to ingest various logs into a Log Analytics Workspace I created. I also set up Microsoft Sentinel to build attack maps showing the geolocation data of where attacks were coming from. Sentinel was also configured to trigger alerts and open incidents based on the data that had been collected.
+- 
 
 
 ## Architecture Before Hardening / Security Controls
