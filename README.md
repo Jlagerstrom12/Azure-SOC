@@ -32,8 +32,10 @@ In this project, I build a mini honeynet in Azure and ingest log sources from va
 
 ## Methodology
 - **Creating the Honeynet:** First I [deployed A Linux Virtual Machine and a Windows 10 Virtual Machine in Azure](https://github.com/Jlagerstrom12/Creating-Honeypot-In-Azure/blob/main/README.md), and then I configured them so they would be insecure.
-- **Monitoring and Analysis** Second I configured Azure to ingest various logs into a Log Analytics Workspace I created. I also set up Microsoft Sentinel to build attack maps showing the geolocation data of where attacks were coming from. Sentinel was also configured to trigger alerts and open incidents based on the data that had been collected.
-- 
+- **Monitoring and Analysis:** Second I configured Azure to ingest various logs into a Log Analytics Workspace I created. I also set up Microsoft Sentinel to build attack maps showing the geolocation data of where attacks were coming from. Sentinel was also configured to trigger alerts and open incidents based on the data that had been collected.
+- **Measuring Security Metrics:** I let the environment run for at least 24 hours, and recorded specific security metrics. These metrics include but are not limited to Brute force attempts on the Windows and Linux VMs and Privilege Escalation. Collecting these logs gave me baseline metrics about the vulnerable systems being open to the internet, which I can compare to the logs after hardening the system.
+-  **Incident Response and Remediation:** After Identifying the vulnerabilities in the systems, I hardened the system and implemented some of NIST SP 800-53 R5 SC-7(3) Access Points Including.
+  - **Network Security Groups:** The NSGs were hardened by blocking all inbound and outbound traffic except for IP addresses requiring virtual machine access. Allowing only authorized traffic from a trusted source 
 
 
 ## Architecture Before Hardening / Security Controls
