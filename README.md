@@ -34,34 +34,35 @@ In this project, I build a mini honeynet in Azure and ingest log sources from va
 - **Creating the Honeynet:** First I [deployed A Linux Virtual Machine and a Windows 10 Virtual Machine in Azure](https://github.com/Jlagerstrom12/Creating-Honeypot-In-Azure/blob/main/README.md), and then I configured them so they would be insecure.
 - **Monitoring and Analysis:** Second I configured Azure to ingest various logs into a Log Analytics Workspace I created. I also set up Microsoft Sentinel to build attack maps showing the geolocation data of where attacks were coming from. Sentinel was also configured to trigger alerts and open incidents based on the data that had been collected.
 - **Measuring Security Metrics:** I let the environment run for at least 24 hours, and recorded specific security metrics. These metrics include but are not limited to Brute force attempts on the Windows and Linux VMs and Privilege Escalation. Collecting these logs gave me baseline metrics about the vulnerable systems being open to the internet, which I can compare to the logs after hardening the system.
--  **Incident Response and Remediation:** After Identifying the vulnerabilities in the systems, I hardened the system and implemented some of NIST SP 800-53 R5 SC-7(3) Access Points Including.
-  - **Network Security Groups:** The NSGs were hardened by blocking all inbound and outbound traffic except for IP addresses requiring virtual machine access. Allowing only authorized traffic from a trusted source 
+-  **Incident Response and Remediation:** After Identifying the vulnerabilities in the systems, I hardened the system and implemented some of NIST SP 800-53 R5 SC-7(3) "Access Points".
+-  **Post-remediation analysis:** After Hardening the environment, I observed the environment for another 24 hours to re-measure the metrics again so I could compare the two sets.
+
+## Architecture Before Hardening and Implementing Security Controls
+![Public Internet Open](https://github.com/user-attachments/assets/a30b1986-5dd4-474b-a99f-e615ac3e48f2)
+
+### Before Hardening Measures and Security Controls: 
+
+- In the "BEFORE" phase of the project, all resources were intentionally deployed with public internet exposure. This deliberately insecure configuration aimed to attract potential cyber attackers and monitor their techniques. The Virtual Machines had their Network Security Groups (NSGs) and internal firewalls fully open, allowing unrestricted access from any source. Furthermore, other resources, including storage accounts and databases, were configured with public endpoints. Without employing Private Endpoints to enhance security, these other resources being deployed were intentionally sweetening the honeynet.
 
 
-## Architecture Before Hardening / Security Controls
-![Architecture Diagram](https://i.imgur.com/aBDwnKb.jpg)
 
-## Architecture After Hardening / Security Controls
-![Architecture Diagram](https://i.imgur.com/YQNa9Pp.jpg)
 
-The architecture of the mini honeynet in Azure consists of the following components:
+## Architecture After Hardening and Implementing Security Controls
+![Public Internet Hardened](https://github.com/user-attachments/assets/8f75036c-3b04-489d-93b9-3e0a5fee6f42)
 
-- Virtual Network (VNet)
-- Network Security Group (NSG)
-- Virtual Machines (2 windows, 1 linux)
-- Log Analytics Workspace
-- Azure Key Vault
-- Azure Storage Account
-- Microsoft Sentinel
-
-For the "BEFORE" metrics, all resources were originally deployed, exposed to the internet. The Virtual Machines had both their Network Security Groups and built-in firewalls wide open, and all other resources are deployed with public endpoints visible to the Internet; aka, no use for Private Endpoints.
-
-For the "AFTER" metrics, Network Security Groups were hardened by blocking ALL traffic with the exception of my admin workstation, and all other resources were protected by their built-in firewalls as well as Private Endpoint
+In the "AFTER" phase, the environment was strengthened, and security measures were put in place to comply with NIST 800-53 Rev5 SC-7 (3) "Access Points." The following actions were taken:
+  - **Network Security Groups (NSGs):** All traffic was blocked except from a specific public IP address that needed access to the virtual machines. This ensured that only an authorized source could establish connections, securing network traffic.
+  - **Built-in Firewalls:** Azure's built-in firewalls were configured on the virtual machines to restrict unauthorized access and defend against malicious connections. Custom firewall rules were applied according to the role and service of each VM, reducing the attack surface and enhancing overall protection.
+  - **Private Endpoints:** To strengthen the security around the other Azure resources, private endpoints replaced the public ones. This safeguarded access to sensitive resources, such as storage accounts and databases, was allowed only inside of the virtual network, and was not exposed to the public internet as it previously was. Resulting in protection from unauthorized access and potential attacks.
 
 ## Attack Maps Before Hardening / Security Controls
-![NSG Allowed Inbound Malicious Flows](https://i.imgur.com/1qvswSX.png)<br>
-![Linux Syslog Auth Failures](https://i.imgur.com/G1YgZt6.png)<br>
-![Windows RDP/SMB Auth Failures](https://i.imgur.com/ESr9Dlv.png)<br>
+
+- This attack map displays the aftermath of leaving Network Security Group (NSG) open to the public internet. This map demonstrates the importance of implementing proper security methods. For example, as explained above, restricting the NSG rules to only allow access from authorized users. 
+![(before) nsg-malicious-allowed-in #2](https://github.com/user-attachments/assets/52645569-ae02-4e52-866f-d20f09ceb9dc)<br> 
+- This attack map highlights the significant number of syslog authentication failures experienced by the Linux VM, indicating unauthorized access attempts from the internet. It clearly emphasizes the critical need to secure not only Linux servers but all resources. Additionally, it underscores the importance of robust authentication measures and the continuous monitoring of system logs for potential intrusion attempts.
+![(before) linux-ssh-auth-fail #2](https://github.com/user-attachments/assets/b64585c1-07c5-4097-95c9-d5d85e2c17c2)<br>
+- This map highlights all the failed attempts involving Remote Desktop Protocol (RDP) and Server Message Block (SMB), revealing attackers' efforts to exploit these protocols. It demonstrates the critical need to secure both remote access and file-sharing services to defend against unauthorized access and potential cyber threats.
+![(before) windows-rdp-auth-fail #2](https://github.com/user-attachments/assets/7443e4bf-0a25-4bd6-bf3e-d4c233a0ed30)<br>
 
 ## Metrics Before Hardening / Security Controls
 
