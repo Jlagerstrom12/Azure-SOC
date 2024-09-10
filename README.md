@@ -60,11 +60,17 @@ In the "AFTER" phase, the environment was strengthened, and security measures we
 - This attack map displays the aftermath of leaving Network Security Group (NSG) open to the public internet. This map demonstrates the importance of implementing proper security methods. For example, as explained above, restricting the NSG rules to only allow access from authorized users. 
 ![(before) nsg-malicious-allowed-in #2](https://github.com/user-attachments/assets/52645569-ae02-4e52-866f-d20f09ceb9dc)<br>
 
+
+
 - This attack map highlights the significant number of syslog authentication failures experienced by the Linux VM, indicating unauthorized access attempts from the internet. It clearly emphasizes the critical need to secure not only Linux servers but all resources. Additionally, it underscores the importance of robust authentication measures and the continuous monitoring of system logs for potential intrusion attempts.
 ![(before) linux-ssh-auth-fail #2](https://github.com/user-attachments/assets/b64585c1-07c5-4097-95c9-d5d85e2c17c2)<br>
 
+
+
 - This map highlights all the failed attempts involving Remote Desktop Protocol (RDP) and Server Message Block (SMB), revealing attackers' efforts to exploit these protocols. It demonstrates the critical need to secure both remote access and file-sharing services to defend against unauthorized access and potential cyber threats.
 ![(before) windows-rdp-auth-fail #2](https://github.com/user-attachments/assets/7443e4bf-0a25-4bd6-bf3e-d4c233a0ed30)<br>
+
+
 
 ## Metrics Before Hardening / Security Controls
 
