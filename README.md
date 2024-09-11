@@ -1,4 +1,4 @@
-# Azure-SOC + Honeynet (Live Attacks)
+# Azure Honeynet and SOC with Real-World Cyber Attacks
 ![Cloud Honeynet + SOC](https://github.com/user-attachments/assets/6d3313ea-7501-41f4-b0cf-4e806d702553)
 
 
@@ -7,13 +7,13 @@
 
 ## Introduction
 
-In this project, I build a mini honeynet in Azure and ingest log sources from various resources into Azure's Log Analytics workspace, which Microsoft Sentinel then uses to build attack maps, trigger alerts, and create incidents. I measured some security metrics in the insecure environment for 24 hours, then applied some security controls to harden the environment, measured metrics for another 24 hours, and then showed the results below. The metrics I am showing are:
+In this project, a small honeynet was built within the Azure cloud environment. The aim was to gather and analyze logs from multiple sources, which were then collected in a Log Analytics workspace. Microsoft Sentinel was then utilized to interpret these logs, create attack maps, set alert triggers through watchlists that were created, and then generate incidents based on the logs collected. Metrics were recorded from the unsecured environment for 24 hours. Afterward, security controls were applied to strengthen the virtual environment. Finally, another 24-hour period was used to gather new metrics, and the results of both phases are explained below. The metrics that were analyzed include:
 
 - SecurityEvent (Windows Event Logs)
 - Syslog (Linux Event Logs)
 - SecurityAlert (Log Analytics Alerts Triggered)
 - SecurityIncident (Incidents created by Sentinel)
-- AzureNetworkAnalytics_CL (Malicious Flows allowed into our honeynet)
+- AzureNetworkAnalytics_CL (Malicious Flows allowed into the honeynet)
 
 ## Technologies, Regulations, and Azure Components Employed:
 - Azure Virtual Network (VNet)
@@ -95,8 +95,8 @@ Stop Time 2024-07-31 17:43
 ## Metrics After Hardening / Security Controls
 
 The following table shows the metrics we measured in our environment for another 24 hours, but after we applied security controls:<br/>
-Start Time 2023-03-18 15:37<br/>
-Stop Time	2023-03-19 15:37
+Start Time 2024-08-02 19:10<br/>
+Stop Time	2024-08-03 19:10
 
 | Metric                                                         | Count
 | -------------------------------------------------------------- | -----
@@ -110,4 +110,4 @@ Stop Time	2023-03-19 15:37
 
 In this project, a mini honeynet was set up in Microsoft Azure, with log sources connected to a Log Analytics workspace. Microsoft Sentinel was used to generate alerts and create incidents based on the logs ingested from the watchlists. Metrics were collected in the unsecured environment before any security controls were added, and then again after implementing security measures. Notably, the number of security events and incidents dropped significantly after applying the security controls, demonstrating their effectiveness.
 
-It's important to mention that if regular users actively used the network's resources, it's likely that more security events and alerts would have been triggered within the 24-hour period following the implementation of the security measures.
+It's important to mention that if regular users actively used the network's resources, it's likely that more security events and alerts would have been triggered within the 24-hour period following the hardening tactics implemented.
