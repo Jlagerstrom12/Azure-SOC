@@ -55,36 +55,38 @@ In the "AFTER" phase, the environment was strengthened, and security measures we
   - **Built-in Firewalls:** Azure's built-in firewalls were configured on the virtual machines to restrict unauthorized access and defend against malicious connections. Custom firewall rules were applied according to the role and service of each VM, reducing the attack surface and enhancing overall protection.
   - **Private Endpoints:** To strengthen the security around the other Azure resources, private endpoints replaced the public ones. This safeguarded access to sensitive resources, such as storage accounts and databases, was allowed only inside of the virtual network, and was not exposed to the public internet as it previously was. Resulting in protection from unauthorized access and potential attacks.
 
-## Attack Maps Before Hardening / Security Controls
+## Attack Maps Before Hardening / Security Controls<br/>
+<br/>
+<br/>
 
 - This attack map displays the aftermath of leaving Network Security Group (NSG) open to the public internet. This map demonstrates the importance of implementing proper security methods. For example, as explained above, restricting the NSG rules to only allow access from authorized users. 
 ![(before) nsg-malicious-allowed-in #2](https://github.com/user-attachments/assets/52645569-ae02-4e52-866f-d20f09ceb9dc)<br>
-
-
+<br/>
+<br/>
 
 - This attack map highlights the significant number of syslog authentication failures experienced by the Linux VM, indicating unauthorized access attempts from the internet. It clearly emphasizes the critical need to secure not only Linux servers but all resources. Additionally, it underscores the importance of robust authentication measures and the continuous monitoring of system logs for potential intrusion attempts.
 ![(before) linux-ssh-auth-fail #2](https://github.com/user-attachments/assets/b64585c1-07c5-4097-95c9-d5d85e2c17c2)<br>
-
-
+<br/>
+<br/>
 
 - This map highlights all the failed attempts involving Remote Desktop Protocol (RDP) and Server Message Block (SMB), revealing attackers' efforts to exploit these protocols. It demonstrates the critical need to secure both remote access and file-sharing services to defend against unauthorized access and potential cyber threats.
 ![(before) windows-rdp-auth-fail #2](https://github.com/user-attachments/assets/7443e4bf-0a25-4bd6-bf3e-d4c233a0ed30)<br>
-
-
+<br/>
+<br/>
 
 ## Metrics Before Hardening / Security Controls
 
-The following table shows the metrics we measured in our insecure environment for 24 hours:
-Start Time 2023-03-15 17:04:29
-Stop Time 2023-03-16 17:04:29
+The following table shows the metrics we measured in our insecure environment for 24 hours:<br/>
+Start Time 2024-07-30 17:43<br/>
+Stop Time 2024-07-31 17:43
 
-| Metric                   | Count
-| ------------------------ | -----
-| SecurityEvent            | 19470
-| Syslog                   | 3028
-| SecurityAlert            | 10
-| SecurityIncident         | 348
-| AzureNetworkAnalytics_CL | 843
+| Metric                                                         | Count
+| -------------------------------------------------------------- | -----
+| SecurityEvent (Windows VM)                                     | 32078
+| Syslog (Linux VM)                                              | 5562
+| SecurityAlert (Microsoft Defender for Cloud)                   | 36
+| SecurityIncident (Sentinel Incidents)                          | 388
+| AzureNetworkAnalytics_CL (NSG Inbound Malicious Flows Allowed) | 2780
 
 ## Attack Maps Before Hardening / Security Controls
 
@@ -92,20 +94,20 @@ Stop Time 2023-03-16 17:04:29
 
 ## Metrics After Hardening / Security Controls
 
-The following table shows the metrics we measured in our environment for another 24 hours, but after we have applied security controls:
-Start Time 2023-03-18 15:37
+The following table shows the metrics we measured in our environment for another 24 hours, but after we applied security controls:<br/>
+Start Time 2023-03-18 15:37<br/>
 Stop Time	2023-03-19 15:37
 
-| Metric                   | Count
-| ------------------------ | -----
-| SecurityEvent            | 8778
-| Syslog                   | 25
-| SecurityAlert            | 0
-| SecurityIncident         | 0
-| AzureNetworkAnalytics_CL | 0
+| Metric                                                         | Count
+| -------------------------------------------------------------- | -----
+| SecurityEvent (Windows VM)                                     | 0
+| Syslog (Linux VM)                                              | 1
+| SecurityAlert (Microsoft Defender for Cloud)                   | 0
+| SecurityIncident  (Sentinel Incidents)                         | 0
+| AzureNetworkAnalytics_CL (NSG Inbound Malicious Flows Allowed) | 0
 
 ## Conclusion
 
-In this project, a mini honeynet was constructed in Microsoft Azure and log sources were integrated into a Log Analytics workspace. Microsoft Sentinel was employed to trigger alerts and create incidents based on the ingested logs. Additionally, metrics were measured in the insecure environment before security controls were applied, and then again after implementing security measures. It is noteworthy that the number of security events and incidents were drastically reduced after the security controls were applied, demonstrating their effectiveness.
+In this project, a mini honeynet was set up in Microsoft Azure, with log sources connected to a Log Analytics workspace. Microsoft Sentinel was used to generate alerts and create incidents based on the logs ingested from the watchlists. Metrics were collected in the unsecured environment before any security controls were added, and then again after implementing security measures. Notably, the number of security events and incidents dropped significantly after applying the security controls, demonstrating their effectiveness.
 
-It is worth noting that if the resources within the network were heavily utilized by regular users, it is likely that more security events and alerts may have been generated within the 24-hour period following the implementation of the security controls.
+It's important to mention that if regular users actively used the network's resources, it's likely that more security events and alerts would have been triggered within the 24-hour period following the implementation of the security measures.
