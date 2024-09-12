@@ -75,7 +75,7 @@ In the "AFTER" phase, the environment was strengthened, and security measures we
 
 ## Metrics Before Hardening / Security Controls
 
-The following table shows the metrics we measured in our insecure environment for 24 hours:<br/>
+The following table shows the metrics measured in the insecure environment for 24 hours:<br/>
 Start Time 2024-07-30 17:43<br/>
 Stop Time 2024-07-31 17:43
 
@@ -93,7 +93,7 @@ Stop Time 2024-07-31 17:43
 
 ## Metrics After Hardening / Security Controls
 
-The following table shows the metrics we measured in our environment for another 24 hours, but after we applied security controls:<br/>
+The following table shows the metrics measured in the environment for another 24 hours, but after applied security controls:<br/>
 Start Time 2024-08-02 19:10<br/>
 Stop Time	2024-08-03 19:10
 
