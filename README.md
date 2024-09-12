@@ -52,9 +52,8 @@ In this project, a small honeynet was built within the Azure cloud environment. 
 
 In the "AFTER" phase, the environment was strengthened, and security measures were put in place to comply with NIST 800-53 Rev5 SC-7 (3) "Access Points." The following actions were taken:
   - **Network Security Groups (NSGs):** All traffic was blocked except from a specific public IP address that needed access to the virtual machines. This ensured that only an authorized source could establish connections, securing network traffic.
-  - **Built-in Firewalls:** Azure's built-in firewalls were configured on the virtual machines to restrict unauthorized access and defend against malicious connections. Custom firewall rules were applied according to the role and service of each VM, reducing the attack surface and enhancing overall protection.
-  - **Private Endpoints:** To strengthen the security around the other Azure resources, private endpoints replaced the public ones. This safeguarded access to sensitive resources, such as storage accounts and databases, was allowed only inside of the virtual network, and was not exposed to the public internet as it previously was. Resulting in protection from unauthorized access and potential attacks.
-
+  - **Built-in Firewalls:** Azure’s built-in firewalls were set up on the virtual machines to block unauthorized access and protect against malicious traffic. Custom firewall rules were tailored to the specific function and role of each VM, reducing the size of the attack surface and improving security overall.
+  - **Private Endpoints:** To improve the security of Azure Key Vault and Storage Containers, Public Endpoints were swapped for Private Endpoints. This change restricted access to these critical resources to the virtual network, preventing further exposure to the public internet. Making these accessible only within the virtual network instead of the entire internet. 
 ## Attack Maps Before Hardening / Security Controls<br/>
 <br/>
 <br/>
@@ -88,7 +87,7 @@ Stop Time 2024-07-31 17:43
 | SecurityIncident (Sentinel Incidents)                          | 388
 | AzureNetworkAnalytics_CL (NSG Inbound Malicious Flows Allowed) | 2780
 
-## Attack Maps Before Hardening / Security Controls
+## Attack Maps After Hardening / Security Controls
 
 ```All map queries actually returned no results due to no instances of malicious activity for the 24 hour period after hardening.```
 
